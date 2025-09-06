@@ -4,3 +4,61 @@
 *:after {
   box-sizing: border-box;
 }
+
+#wrapper{
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+#top-header{
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-between;
+}
+
+#top-header a {
+  text-decoration: none;
+  color: #333333;
+}
+
+.siteName {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333333;
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 100vw;
+  }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+ul li {
+  float: left;
+  margin: auto;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  text-decoration: underline;
+  text-transform: lowercase;
+}
