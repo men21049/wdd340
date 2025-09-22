@@ -130,6 +130,48 @@ nav>ul li a:hover {
   text-decoration: underline;
 }
 
+hr {
+  border: none;
+  height: 5px;
+  background-color: green;
+  width: 100%;
+  margin: 1px auto;
+}
+
+#inv-display{
+  display: inline-block;
+}
+
+#inv-display h2{
+  text-align: center;
+  margin-top: 0;
+}
+
+.namePrice a{
+  text-decoration: none;
+  color: #333333;
+}
+
+
+.namePrice a:hover{
+  text-decoration: underline;
+}
+
+.price{
+  font-weight: 600;
+  color: #31b0d4;
+  margin-left: auto;
+}
+
+.detailInfo{
+  margin: 1rem;
+}
+
+.detailInfo p{
+  margin: 0.5rem 0;
+  background-color: lightgray;
+}
+
 footer{
   padding: 10px 0;
   margin: 1rem;
@@ -164,4 +206,11 @@ footer{
     margin-right: 20px;
     padding-top: 20px;
   }
+
+  #inv-display li{
+    display: inline-block;
+    margin-right: 2rem;
+    padding: 0;
+  }
+
 }
