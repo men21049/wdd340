@@ -177,6 +177,52 @@ footer{
   margin: 1rem;
 }
 
+.notice{
+  background-color: indianred;
+  color: aliceblue;
+}
+
+.notice ul{
+  text-decoration: none;
+}
+.congrats ul{
+  text-decoration: none;
+}
+
+.congrats{
+  background-color: #04AA6D;
+  color: aliceblue;
+}
+
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+input:required:invalid, input:focus:invalid {
+ box-shadow: red 1px;
+}
+ input:required:valid {
+ box-shadow: green 1px;
+ }
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
 @media screen and (min-width: 461px) {
   body{
     background-image: url('../images/site/small_check.jpg');

@@ -1,0 +1,20 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "dpg-d351vu15pdvs73bcatqg-a.oregon-postgres.render.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "cse340",
+            "database": "cse340_db_ucsb",
+            "username": "cse340_db_ucsb_user",
+            "password": "PNcHjjv4r69CYnrK6kuQm38GvIhXZ532"
+        }
+    ]
+}
