@@ -223,6 +223,31 @@ button:hover {
   opacity: 0.8;
 }
 
+/* Legend styling */
+form legend {
+  font-size: 1.2rem;
+  color: #2563eb;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: block;
+  text-align: center;
+}
+
+/* Labels */
+form label {
+  display: block;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.4rem;
+  margin-top: 1rem;
+}
+
+/* Textarea resizing */
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
 @media screen and (min-width: 461px) {
   body{
     background-image: url('../images/site/small_check.jpg');

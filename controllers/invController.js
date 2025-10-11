@@ -43,4 +43,85 @@ invCont.detailByInventoryId = async function (req, res, next) {
   }
 }
 
+invCont.buildManagementView = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  try{
+  res.render("./inventory/management", {
+    title: "Inventory Management",
+    nav,
+  });
+  }
+  catch(error){
+    console.error("Error rendering management view: ", error);
+    res.status(500).send("An error occurred while processing your request."); 
+  }
+}
+
+invCont.addClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  try{
+  res.render("./inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+  });
+  }
+  catch(error){
+    console.error("Error rendering add classification view: ", error);
+    res.status(500).send("An error occurred while processing your request."); 
+  }
+}
+
+invCont.addNewClassification = async function (req, res, next) {
+  const { classificationName } = req.body;
+  const regResult = await invModel.addNewClassification(classificationName);
+  if (regResult) {
+    req.flash(
+      "success",
+      `The new classification ${classificationName} was added successfully.`
+    );
+    res.redirect("/management");
+  } else {
+    req.flash("error", "Sorry, the new classification was not added.");
+    res.redirect("/management/addNewClassification");
+  }
+};
+
+
+invCont.addInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList();
+  try{
+  res.render("./inventory/add-inventory", {
+    title: "Add New Inventory",
+    nav,
+    classificationSelect,
+  });
+  }
+  catch(error){
+    console.error("Error rendering add inventory view: ", error);
+    res.status(500).send("An error occurred while processing your request."); 
+  }
+} 
+
+invCont.addNewInventory = async function (req,res,nect) {
+  const { inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body;
+
+  if(!inv_image){
+    inv_image = '/images/no-image.png';
+    inv_thumbnail = '/images/no-image.png';
+  }
+  
+  const regResult = await invModel.addNewInventory(inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id);
+  if (regResult) {
+    req.flash(
+      "success",
+      `The new inventory item ${inv_make} ${inv_model} was added successfully.`
+    );
+    res.redirect("/management");
+  } else {
+    req.flash("error", "Sorry, the new inventory item was not added.");
+    res.redirect("/management/addNewInventory");
+  } 
+}
+
 module.exports = invCont;
