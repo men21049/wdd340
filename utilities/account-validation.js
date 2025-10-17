@@ -76,4 +76,23 @@ validate.checkRegData = async (req, res, next) => {
   next();
 };
 
+validate.loginRules = () => {
+  return [
+    // valid email is required
+    body("account_email")
+      .trim()
+      .escape()
+      .notEmpty()
+      .isEmail()
+      .normalizeEmail() // refer to validator.js docs
+      .withMessage("A valid email is required."),
+        
+    // password is required
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .withMessage("Please provide your password."),
+  ];
+}
+
 module.exports = validate;

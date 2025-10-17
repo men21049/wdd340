@@ -35,11 +35,13 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));// for parsing application/x-www-form-urlencoded
 
+
 //Express message Middelware
 app.use(require('connect-flash')());
 app.use(function(req,res, next){
   res.locals.messages = require('express-messages')(req,next())
 });
+
 
 
 
@@ -53,8 +55,8 @@ app.set("layout", "./layouts/layout");
 /* ***********************
  * Body Parser Middleware
  *************************/
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+
 
 
 /* ***********************
