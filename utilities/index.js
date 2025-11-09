@@ -112,9 +112,6 @@ Util.buildClassificationList = async function (classification_id = null) {
 **************************************** */
 Util.checkJWTToken = (req, res, next) => {
  if (req.cookies.jwt) {
-
-  console.log("JWT found: " + req.cookies.jwt);
-  console.log(env.ACCESS_TOKEN_SECRET);
   jwt.verify(
    req.cookies.jwt,
    process.env.ACCESS_TOKEN_SECRET,
@@ -132,6 +129,19 @@ Util.checkJWTToken = (req, res, next) => {
   next();
  }
 }
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  console.log("test" + res.locals.loggedin);
+  if (res.locals.loggedin) {
+    next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+ }
 
 /* ****************************************
  * Middleware For Handling Errors
