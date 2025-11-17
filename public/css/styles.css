@@ -147,6 +147,11 @@ hr {
   margin-top: 0;
 }
 
+#detail-display {
+    display: flex;
+    flex-direction: column;
+}
+
 .namePrice a{
   text-decoration: none;
   color: #333333;
@@ -282,6 +287,11 @@ form textarea {
     display: inline-block;
     margin-right: 2rem;
     padding: 0;
+  }
+  
+  #detail-display {
+    display: flex;
+    flex-direction: row;
   }
 
 }

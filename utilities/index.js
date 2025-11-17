@@ -68,12 +68,11 @@ Util.buildInventoryDetail = async function(data){
     detail += '<img src="' + data[0].inv_image + '" alt="Image of ' 
     + data[0].inv_make + ' ' + data[0].inv_model + ' on CSE Motors" />'
     detail += '<div class="namePrice">'
-    detail += '<h2>' + data[0].inv_make + ' ' + data[0].inv_model + '</h2>'
     detail += '<span class="price">$' 
     + new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</span>'
     detail += '</div>'
     detail += '<div class="detailInfo">'
-    detail += '<h3>Details</h3>'
+    detail += '<h3>' + data[0].inv_make + ' ' + data[0].inv_model + '</h3>'
     detail += '<hr />'
     detail += '<p><strong>Description: </strong>' + data[0].inv_description + '</p>'
     detail += '<p><strong>Color: </strong>' + data[0].inv_color + '</p>'
@@ -133,15 +132,7 @@ Util.checkJWTToken = (req, res, next) => {
 /* ****************************************
  *  Check Login
  * ************************************ */
- Util.checkLogin = (req, res, next) => {
-  console.log("test" + res.locals.loggedin);
-  if (res.locals.loggedin) {
-    next();
-  } else {
-    req.flash("notice", "Please log in.");
-    return res.redirect("/account/login");
-  }
- }
+
 
 /* ****************************************
  * Middleware For Handling Errors

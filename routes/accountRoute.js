@@ -7,7 +7,7 @@ const accountController = require("../controllers/accountController");
 // Route definitions for account management
 router.get('/login',util.handleErrors(accountController.buildLogin));
 router.get('/registration', util.handleErrors(accountController.buildRegister));
-router.get('/', util.checkLogin(), util.handleErrors(accountController.buildAccountManagement));
+router.get('/', util.handleErrors(accountController.buildAccountManagement));
 router.get('/logout', util.handleErrors(accountController.logoutAccount));
 
 // Handle form submissions with validation middleware
@@ -18,7 +18,6 @@ router.post('/register',
 
 router.post('/login',
     regValidate.loginRules(),
-    regValidate.checkLoginData,
     util.handleErrors(accountController.loginAccount));
 
 
