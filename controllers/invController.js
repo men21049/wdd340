@@ -107,8 +107,8 @@ invCont.addNewInventory = async function (req,res,nect) {
   const { inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body;
 
   if(!inv_image){
-    inv_image = '/images/no-image.png';
-    inv_thumbnail = '/images/no-image.png';
+    inv_image = '/images/vehicles/no-image.png';
+    inv_thumbnail = '/images/vehicles/no-image-tn.png';
   }
   
   const regResult = await invModel.addNewInventory(inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id);
