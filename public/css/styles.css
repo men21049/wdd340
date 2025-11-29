@@ -199,20 +199,25 @@ footer{
   color: aliceblue;
 }
 
-form {border: 3px solid #f1f1f1;}
+form {
+  padding: 16px;
+  background-color: #f2f2f2;
+  border: 3px solid #f1f1f1;
+}
 
 input[type=text], input[type=password] {
-  padding: 12px 20px;
+  padding: 12px 10px;
   margin: 8px 0;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
 input:required:invalid, input:focus:invalid {
- box-shadow: red 1px;
+ border: 1px solid red;
 }
+
  input:required:valid {
- box-shadow: green 1px;
+ border: 1px solid green;
  }
 
 button {
