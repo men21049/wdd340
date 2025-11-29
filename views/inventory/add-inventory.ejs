@@ -3,27 +3,30 @@
 <% } else {
   res.redirect('/')
 } %>
-
-<form>
+<%- messages() %>
+<a href="../management">Go Back to Management</a>
+<form method="post">
     <legend>New Inventory</legend>
-    <label for="classificationId">Classification</label>
+    <label for="classification_Id">Classification</label>
     <%- classificationSelect %>
-    <label for="invMake">Make</label>
-    <input type="text" id="invMake" name="invMake" required>
-    <label for="invModel">Model</label>
-    <input type="text" id="invModel" name="invModel" required>
-    <label for="invDescription">Description</label>
-    <textarea id="invDescription" name="invDescription" required></textarea>
-    <label for="invImage">Image URL</label>
-    <input type="url" id="invImage" name="invImage" >
-    <label for="invThumbnail">Thumbnail URL</label>
-    <input type="url" id="invThumbnail" name="invThumbnail" >
-    <label for="invPrice">Price</label>
-    <input type="number" id="invPrice" name="invPrice" step="
+    <label for="inv_make">Make</label>
+    <input type="text" id="inv_make" name="inv_make" required>
+    <label for="inv_model">Model</label>
+    <input type="text" id="inv_model" name="inv_model" required>
+    <label for="inv_description">Description</label>
+    <textarea id="inv_description" name="inv_description" required></textarea>
+    <label for="inv_image">Image URL</label>
+    <input type="url" id="inv_image" name="inv_image" >
+    <label for="inv_thumbnail">Thumbnail URL</label>
+    <input type="url" id="inv_thumbnail" name="inv_thumbnail" >
+    <label for="inv_price">Price</label>
+    <input type="number" id="inv_price" name="inv_price" step="
 0.01" required>
-    <label for="invStock">Stock</label>
-    <input type="number" id="invStock" name="invStock" required>
-    <label for="invColor">Color</label>
-    <input type="text" id="invColor" name="invColor" required>
+    <label for="inv_year">Year</label>
+    <input type="number" id="inv_year" name="inv_year" required>
+    <label for="inv_miles">Miles</label>
+    <input type="number" id="inv_miles" name="inv_miles" required>
+    <label for="inv_color">Color</label>
+    <input type="text" id="inv_color" name="inv_color" required>
     <button type="submit">Add Inventory</button>
 </form>

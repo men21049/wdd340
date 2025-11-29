@@ -43,7 +43,7 @@ async function addNewClassification(classificationName) {
     }
 }   
 
-async function addNewInventory(inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id) {
+async function addNewInventory(classification_id,inv_make,inv_model,inv_description,inv_image,inv_thumbnail,inv_price,inv_year,inv_miles,inv_color) {
     try {
         const sql = `INSERT INTO public.inventory
         (inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id)
@@ -64,4 +64,5 @@ module.exports = {
     getInventoryByClassificationId,
     detailByInventoryId,
     addNewClassification,
+    addNewInventory
 };
