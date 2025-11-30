@@ -45,10 +45,13 @@ invCont.detailByInventoryId = async function (req, res, next) {
 
 invCont.buildManagementView = async function (req, res, next) {
   let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList();
+
   try{
   res.render("./inventory/management", {
     title: "Inventory Management",
     nav,
+    classificationSelect,
   });
   }
   catch(error){
@@ -120,6 +123,37 @@ invCont.addNewInventory = async function (req,res,nect) {
     req.flash("error", "Sorry, the new inventory item was not added.");
     res.redirect("/inv/management/addNewInventory");
   } 
+}
+
+invCont.getInventoryJSON = async function (req, res, next) {
+  const classification_id = parseInt(req.params.classification_id)
+  const invData = await invModel.getInventoryByClassificationId(classification_id)
+  if (invData[0].inv_id) {
+    return res.json(invData)
+  } else {
+    next(new Error("No data returned"))
+  }
+}
+
+invCont.editInventoryById = async function (req, res, next) {
+  const inventory_id = parseInt(req.params.id);
+  console.log("Editing inventory item with ID:", inventory_id);
+  let nav = await utilities.getNav();
+  const itemDataArray = await invModel.getInventoryById(inventory_id);
+  const itemData = itemDataArray[0];
+  const classificationSelect = await utilities.buildClassificationList(itemData.classification_id);
+  const itemName = `${itemData.inv_make} ${itemData.inv_model}`;
+  
+  console.log(itemData);
+  console.log(itemName);
+
+  res.render("./inventory/edit-inventory", {
+    title: `Edit ${itemName}`,
+    nav,
+    classificationSelect: classificationSelect,
+    errors:null, 
+    itemData,
+  });
 }
 
 module.exports = invCont;

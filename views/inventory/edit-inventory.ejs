@@ -1,0 +1,32 @@
+<% if (title) { %>
+<h1><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+<%- messages() %>
+
+<form action="/inv/update" method="post">
+  <legend>Adjust Inventory</legend>
+  <label for="classification_Id">Classification</label>
+  <%- classificationSelect %>
+  <label for="inv_make">Make</label>
+  <input type="text" id="inv_make" name="inv_make" value="<%- itemData.inv_make %>" required>
+  <label for="inv_model">Model</label>
+  <input type="text" id="inv_model" name="inv_model" value="<%= itemData.inv_model %>" required>
+  <label for="inv_description">Description</label>
+  <textarea id="inv_description" name="inv_description" required><%- itemData.inv_description %></textarea>
+  <label for="inv_image">Image URL</label>
+  <input type="url" id="inv_image" name="inv_image" value="<%- itemData.inv_image %>" >
+  <label for="inv_thumbnail">Thumbnail URL</label>
+  <input type="url" id="inv_thumbnail" name="inv_thumbnail" value="<%- itemData.inv_thumbnail %>" >
+  <label for="inv_price">Price</label>
+  <input type="number" id="inv_price" name="inv_price" step="0.01" value="<%- itemData.inv_price %>" required>
+  <label for="inv_year">Year</label>
+  <input type="number" id="inv_year" name="inv_year" value="<%- itemData.inv_year %>" required>
+  <label for="inv_miles">Miles</label>
+  <input type="number" id="inv_miles" name="inv_miles" value="<%- itemData.inv_miles %>" required>
+  <label for="inv_color">Color</label>
+  <input type="text" id="inv_color" name="inv_color" value="<%- itemData.inv_color %>" required>
+  <button type="submit">Update Vehicle</button>
+  <input type="hidden" name="inv_id" value="<%= itemData.inv_id %>">
+</form>
