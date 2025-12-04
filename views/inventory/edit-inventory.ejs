@@ -5,14 +5,14 @@
 } %>
 <%- messages() %>
 
-<form action="/inv/update" method="post">
+<form action="/inv/update/" method="post">
   <legend>Adjust Inventory</legend>
   <label for="classification_Id">Classification</label>
   <%- classificationSelect %>
   <label for="inv_make">Make</label>
   <input type="text" id="inv_make" name="inv_make" value="<%- itemData.inv_make %>" required>
   <label for="inv_model">Model</label>
-  <input type="text" id="inv_model" name="inv_model" value="<%= itemData.inv_model %>" required>
+  <input type="text" id="inv_model" name="inv_model" value="<%- itemData.inv_model %>" required>
   <label for="inv_description">Description</label>
   <textarea id="inv_description" name="inv_description" required><%- itemData.inv_description %></textarea>
   <label for="inv_image">Image URL</label>

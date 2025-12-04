@@ -17,5 +17,6 @@ router.get('/management/addNewInventory',  util.handleErrors(inventoryController
 // Route to handle post requests for adding new classification and inventory
 router.post('/management/addNewClassification', util.handleErrors(inventoryController.addNewClassification));
 router.post('/management/addNewInventory',  util.handleErrors(inventoryController.addNewInventory));
+router.post('/update/', util.handleErrors(inventoryController.updateInventory));
 
 module.exports = router;

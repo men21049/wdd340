@@ -44,9 +44,6 @@ app.use(function(req,res, next){
   res.locals.messages = require('express-messages')(req,next())
 });
 
-
-
-
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -57,9 +54,6 @@ app.set("layout", "./layouts/layout");
 /* ***********************
  * Body Parser Middleware
  *************************/
-
-
-
 
 /* ***********************
  * Routes
