@@ -5,11 +5,11 @@
 } %>
 <%- messages() %>
 
-<form action="/inv/update/" method="post">
+<form id="updateForm" action="/inv/update/" method="post">
   <fieldset>
   <legend>Adjust Inventory</legend>
 
-  <label for="classification_Id">Classification</label>
+  <label for="classificationList">Classification</label>
   <%- classificationSelect %>
   
   <label for="inv_make">Make</label>
@@ -24,10 +24,10 @@
   </textarea>
   
   <label for="inv_image">Image URL</label>
-  <input type="url" id="inv_image" name="inv_image" value="<%= locals.inv_image %>">
+  <input type="text" id="inv_image" name="inv_image" value="<%= locals.inv_image %>">
   
   <label for="inv_thumbnail">Thumbnail URL</label>
-  <input type="url" id="inv_thumbnail" name="inv_thumbnail" value="<%= locals.inv_thumbnail %>">
+  <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="<%= locals.inv_thumbnail %>">
   
   <label for="inv_price">Price</label>
   <input type="number" id="inv_price" name="inv_price" value="<%= locals.inv_price %>" required min="0" >
@@ -41,7 +41,8 @@
   <label for="inv_color">Color</label>
   <input type="text" id="inv_color" name="inv_color" value="<%= locals.inv_color %>" required>
   
-  <button type="submit">Update Vehicle</button>
-  <input type="hidden" name="inv_id" value="<%= itemData.inv_id %>">
+  <button type="submit" disabled>Update Vehicle</button>
+  <input type="hidden" name="inv_id" value="<%= inv_id %>">
   </fieldset>
 </form>
+<script src="../../js/inv-update.js"></script>

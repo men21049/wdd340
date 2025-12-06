@@ -33,6 +33,7 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));// for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
@@ -59,7 +60,8 @@ app.set("layout", "./layouts/layout");
  * Routes
  *************************/
 app.use(static);
-app.get("/", utilities.handleErrors(baseController.buildHome))
+app.get("/", utilities.handleErrors(baseController.buildHome));
+
 app.use("/inv", utilities.handleErrors(inventoryRoute));
 app.use("/footer",utilities.handleErrors(footerRoute));
 app.use("/account", utilities.handleErrors(accountRoute));
@@ -74,14 +76,14 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  let nav = await utilities.getNav();
+  
   if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
   res.render("errors/error", {
     title: err.status || 'Server Error',
     message,
-    nav
-  })
+    nav,
+  });
 })
 
 /* ***********************

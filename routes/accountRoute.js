@@ -9,6 +9,7 @@ router.get('/login',util.handleErrors(accountController.buildLogin));
 router.get('/registration', util.handleErrors(accountController.buildRegister));
 router.get('/',util.checkLogin, util.handleErrors(accountController.buildAccountManagement));
 router.get('/logout', util.handleErrors(accountController.logoutAccount));
+router.get('/update/:id', util.checkLogin, util.handleErrors(accountController.buildUpdateAccount));
 
 // Handle form submissions with validation middleware
 router.post('/register',
@@ -20,6 +21,10 @@ router.post('/login',
     regValidate.loginRules(),
     util.handleErrors(accountController.loginAccount));
 
-
+router.post('/update-passsword/',
+    util.checkLogin,
+    regValidate.updatePasswordRules(),
+    regValidate.checkUpdatePasswordData,
+    util.handleErrors(accountController.updatePassword));
 
 module.exports = router;

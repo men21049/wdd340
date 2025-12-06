@@ -1,5 +1,4 @@
 const utilities = require(".");
-const inventoryModel = require("../models/inventory-model");
 const { body, validationResult } = require("express-validator");
 const validate = {};
 
@@ -82,10 +81,13 @@ validate.checkInvData = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav();
+        
+
         const classificationSelect = await utilities.buildClassificationList();
         res.render("inventory/add-inventory", {
         title: "Add Inventory",
         nav,
+
         classificationSelect,
         errors: errors.array(),
         classification_id,
@@ -110,10 +112,13 @@ validate.checkUpdateData = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav();
+        
+
         const classificationSelect = await utilities.buildClassificationList();
         res.render("inventory/edit-inventory", {
         title: "Add Inventory",
         nav,
+
         classificationSelect,
         errors: errors.array(),
         inv_make,

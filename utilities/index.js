@@ -28,6 +28,7 @@ Util.getNav = async function (req,res,next){
     return list;
 }
 
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
@@ -138,8 +139,28 @@ Util.checkLogin = (req, res, next) => {
     return res.redirect("/account/login");
   }
 }
+  
+/* ****************************************
+  *  Check account type
+  * ************************************ */
 
-   
+Util.checkAccountType = (req, res, next) => {
+
+  if(!res.locals.loggedin || !res.locals.accountData){
+    req.flash("notice","Please log in");
+    return res.redirect("/account/login");
+  }
+  
+  const accountType = res.locals.accountData.account_type;
+  
+  if(accountType == 'Employee' || accountType == 'Admin'){
+    next();
+  } else {
+    req.flash("notice","You do not have permission to access this area.");
+    return res.redirect("/account/login");
+  } 
+}
+
 
 /* ****************************************
  * Middleware For Handling Errors

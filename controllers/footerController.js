@@ -7,10 +7,12 @@ footer.linkFooter = async function (req, res, next) {
     }
     catch(error){
       const nav = await utilities.getNav();
+      
       res.status(500).render("error/errors", {
           title: "Server Error",
           message: "500 - An error occurred while processing your request.",
           nav,
+  
       });
     }
 }
