@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const util = require('../utilities/index');
+const regValidate = require('../utilities/inventory-validation');
 const inventoryController = require('../controllers/invController');
 
 // Route to get all inventory items
@@ -15,8 +16,17 @@ router.get('/management/addNewClassification',  util.handleErrors(inventoryContr
 router.get('/management/addNewInventory',  util.handleErrors(inventoryController.addInventory));
 
 // Route to handle post requests for adding new classification and inventory
-router.post('/management/addNewClassification', util.handleErrors(inventoryController.addNewClassification));
-router.post('/management/addNewInventory',  util.handleErrors(inventoryController.addNewInventory));
-router.post('/update/', util.handleErrors(inventoryController.updateInventory));
+router.post('/management/addNewClassification',
+             regValidate.classificationRules() ,
+             util.handleErrors(inventoryController.addNewClassification));
+
+router.post('/management/addNewInventory',
+            regValidate.inventoryRules(),
+            regValidate.checkInvData,
+            util.handleErrors(inventoryController.addNewInventory));
+
+router.post('/update/', 
+            regValidate.checkUpdateData,
+            util.handleErrors(inventoryController.editInventoryById));
 
 module.exports = router;

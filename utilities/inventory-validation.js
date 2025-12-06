@@ -39,20 +39,6 @@ validate.inventoryRules = () => {
                 .notEmpty()
                 .isLength({ min: 10 })
                 .withMessage("Please provide a description."), // on error this message is sent.
-        // inv_image is required and must be string
-            body("inv_image")
-                .trim()
-                .escape()
-                .notEmpty()
-                .isLength({ min: 10 })
-                .withMessage("Please provide an image path."), // on error this message is sent.
-        // inv_thumbnail is required and must be string
-            body("inv_thumbnail")
-                .trim()
-                .escape()
-                .notEmpty()
-                .isLength({ min: 10 })
-                .withMessage("Please provide a thumbnail path."), // on error this message is sent.
         // inv_price is required and must be decimal
             body("inv_price")
                 .trim()
@@ -92,7 +78,7 @@ validate.inventoryRules = () => {
 };
       
 validate.checkInvData = async (req, res, next) => {
-    const { inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color, classification_id } = req.body;
+    const { classification_id, inv_make, inv_model, inv_description, inv_image, inv_thumbnail, inv_price, inv_year, inv_miles, inv_color } = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         let nav = await utilities.getNav();
@@ -102,6 +88,7 @@ validate.checkInvData = async (req, res, next) => {
         nav,
         classificationSelect,
         errors: errors.array(),
+        classification_id,
         inv_make,
         inv_model,
         inv_description,
@@ -110,8 +97,7 @@ validate.checkInvData = async (req, res, next) => {
         inv_price,
         inv_year,
         inv_miles,
-        inv_color,
-        classification_id
+        inv_color
         });
         return;
     }

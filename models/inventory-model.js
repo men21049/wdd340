@@ -55,7 +55,7 @@ async function addNewClassification(classificationName) {
         return result.rows[0];
     } catch (error) {
         console.error('addNewClassification error: ', error);
-        throw error;
+        return error;
     }
 }   
 

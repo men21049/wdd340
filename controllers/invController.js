@@ -75,12 +75,12 @@ invCont.addClassification = async function (req, res, next) {
 }
 
 invCont.addNewClassification = async function (req, res, next) {
-  const { classificationName } = req.body;
-  const regResult = await invModel.addNewClassification(classificationName);
+  const { classification_name } = req.body;
+  const regResult = await invModel.addNewClassification(classification_name);
   if (regResult) {
     req.flash(
       "success",
-      `The new classification ${classificationName} was added successfully.`
+      `The new classification ${classification_name} was added successfully.`
     );
     res.redirect("/inv/management/addNewClassification");
   } else {
@@ -106,9 +106,10 @@ invCont.addInventory = async function (req, res, next) {
   }
 } 
 
-invCont.addNewInventory = async function (req,res,nect) {
+invCont.addNewInventory = async function (req,res,next) {
+  console.log(req.body);
   const { classification_id,inv_make,inv_model,inv_description,inv_image,inv_thumbnail,inv_price,inv_year,inv_miles,inv_color } = req.body;
-
+  
   let invimage = (!inv_image) ? '/images/vehicles/no-image.png':inv_image;
   let invthumbnail = (!inv_thumbnail) ? '/images/vehicles/no-image-tn.png':inv_thumbnail;
     

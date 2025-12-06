@@ -1,9 +1,15 @@
 <%- messages() %>
 <a href="../management">Go Back to Management</a>
-<form>
+
+<form method="post">  
+    
+    <fieldset>
     <legend>Add New Classification</legend>
-    <label for="classificationName">Classification Name</label>
+    
+    <label for="classification_name">Classification Name</label>
     <p>A new classification name cannot contain a space or special character of any kind</p>
-    <input type="text" id="classificationName" name="classificationName" required value="<%= locals.classificationName %>">
+    <input type="text" id="classification_name" name="classification_name" required value="<%= locals.classificationName %>" pattern="^[a-zA-Z0-9]+$">
+    
     <button type="submit">Add Classification</button>
+    </fieldset>
 </form>
