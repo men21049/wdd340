@@ -56,6 +56,38 @@ accntCont.buildUpdateAccount = async function (req, res, next) {
   }
 }
 
+accntCont.updateAccount = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const { account_id, account_firstname, account_lastname, account_email } = req.body;
+  const accountIdInt = parseInt(account_id);
+
+  if (!res.locals.accountData || res.locals.accountData.account_id !== accountIdInt) {
+    req.flash("notice", "You are not authorized to update this account.");
+    return res.redirect("/account/");
+  }
+
+  const updateResult = await accountModel.updateAccountInfo(
+    accountIdInt,
+    account_firstname,
+    account_lastname,
+    account_email
+  );
+
+  if (updateResult) {
+    const updatedAccountData = await accountModel.getAccountById(accountIdInt);
+    
+    if (updatedAccountData) {
+      req.flash("success", "Your account information has been updated successfully.");
+    } else {
+      req.flash("notice", "Account updated but could not retrieve updated information.");
+    }
+  } else {
+    req.flash("notice", "Sorry, the account update failed.");
+  }
+
+  res.redirect("/account/");
+}
+
 accntCont.updatePassword = async function(req, res){
   let nav = await utilities.getNav();
   const {account_id, account_password} =  req.body;
@@ -74,17 +106,26 @@ accntCont.updatePassword = async function(req, res){
     req.flash("notice", 'Sorry, there was an error processing the password update.');
     res.redirect("/account/update/" + accountID);
   }
+
   const updateResult = await accountModel.updatePassword(accountID, hashedPassword);
   
   if (updateResult) {
-    req.flash("success", "Your password has been updated successfully.");
-    res.redirect("/account/");
+    const updatedAccountData = await accountModel.getAccountById(accountID);
+    
+    if (updatedAccountData) {
+      if (updatedAccountData.account_password && updatedAccountData.account_password.startsWith('$2')) {
+        req.flash("success", "Your password has been updated successfully.");
+      } else {
+        req.flash("notice", "Password update completed but verification failed.");
+      }
+    } else {
+      req.flash("notice", "Password updated but could not retrieve account information.");
+    }
   } else {
     req.flash("notice", "Sorry, the password update failed.");
-    res.redirect("/account/update/" + accountID);
   }
 
-
+  res.redirect("/account/");
 }
 
 accntCont.registerAccount = async function(req, res){
@@ -186,7 +227,7 @@ accntCont.loginAccount = async function(req, res){
 accntCont.logoutAccount = async function(req, res){
   res.clearCookie("jwt");
   req.session.destroy();
-  res.redirect("/account/login");
+  res.redirect("/");
 };
 
 module.exports = accntCont;

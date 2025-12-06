@@ -21,6 +21,12 @@ router.post('/login',
     regValidate.loginRules(),
     util.handleErrors(accountController.loginAccount));
 
+router.post('/update/',
+    util.checkLogin,
+    regValidate.accountUpdateRules(),
+    regValidate.checkAccountUpdateData,
+    util.handleErrors(accountController.updateAccount))
+
 router.post('/update-passsword/',
     util.checkLogin,
     regValidate.updatePasswordRules(),

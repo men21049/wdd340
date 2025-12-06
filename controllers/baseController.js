@@ -4,8 +4,7 @@ const baseController = {};
 
 baseController.buildHome = async function(req,res){
     const nav = await utilities.getNav();
-    const welcome = await utilities.buildWelcomeMessage();
-    res.render("index", { title: "Home", nav, welcome });
+    res.render("index", { title: "Home", nav });
 }
 
 module.exports = baseController;
