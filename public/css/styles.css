@@ -308,3 +308,275 @@ form textarea {
   }
 
 }
+.search-container {
+  margin: 5% 3%;
+}
+
+@media (min-width: 48em) {
+  .search-container {
+    margin: 2%;
+  }
+}
+
+@media (min-width: 75em) {
+  .search-container {
+    margin: 2em auto;
+    max-width: 75em;
+  }
+}
+
+.responsive-table {
+  width: 100%;
+  margin-bottom: 1.5em;
+  border-spacing: 0;
+}
+
+@media (min-width: 48em) {
+  .responsive-table {
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 62em) {
+  .responsive-table {
+    font-size: 1em;
+  }
+}
+
+.responsive-table thead {
+  /* Accessibly hide <thead> on narrow viewports */
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+@media (min-width: 48em) {
+  .responsive-table thead {
+    /* Unhide <thead> on wide viewports */
+    position: relative;
+    clip: auto;
+    height: auto;
+    width: auto;
+    overflow: auto;
+  }
+}
+
+.responsive-table thead th {
+  background-color: #31b0d4;
+  border: 1px solid #2c79bf;
+  font-weight: normal;
+  text-align: center;
+  color: white;
+}
+
+.responsive-table thead th:first-of-type {
+  text-align: left;
+}
+
+/* Set these items to display: block for narrow viewports */
+.responsive-table tbody,
+.responsive-table tr,
+.responsive-table th,
+.responsive-table td {
+  display: block;
+  padding: 0;
+  text-align: left;
+  white-space: normal;
+}
+
+@media (min-width: 48em) {
+  .responsive-table tr {
+    /* Undo display: block */
+    display: table-row;
+  }
+}
+
+.responsive-table th,
+.responsive-table td {
+  padding: 0.5em;
+  vertical-align: middle;
+}
+
+@media (min-width: 30em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.75em 0.5em;
+  }
+}
+
+@media (min-width: 48em) {
+  .responsive-table th,
+  .responsive-table td {
+    /* Undo display: block */
+    display: table-cell;
+    padding: 0.5em;
+  }
+}
+
+@media (min-width: 62em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.75em 0.5em;
+  }
+}
+
+@media (min-width: 75em) {
+  .responsive-table th,
+  .responsive-table td {
+    padding: 0.75em;
+  }
+}
+
+.responsive-table caption {
+  margin-bottom: 1em;
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (min-width: 48em) {
+  .responsive-table caption {
+    font-size: 1.5em;
+  }
+}
+
+.responsive-table tfoot {
+  font-size: 0.8em;
+  font-style: italic;
+}
+
+@media (min-width: 62em) {
+  .responsive-table tfoot {
+    font-size: 0.9em;
+  }
+}
+
+.responsive-table tbody {
+  /* Set to display: block for narrow viewports */
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody {
+    /* Undo display: block */
+    display: table-row-group;
+  }
+}
+
+.responsive-table tbody tr {
+  margin-bottom: 1em;
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody tr {
+    /* Undo display: block */
+    display: table-row;
+    border-width: 1px;
+  }
+}
+
+.responsive-table tbody tr:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody tr:nth-of-type(even) {
+    background-color: rgba(49, 176, 212, 0.1);
+  }
+}
+
+.responsive-table tbody th[scope="row"] {
+  background-color: #31b0d4;
+  color: white;
+}
+
+@media (min-width: 30em) {
+  .responsive-table tbody th[scope="row"] {
+    border-left: 1px solid #2c79bf;
+    border-bottom: 1px solid #2c79bf;
+  }
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody th[scope="row"] {
+    background-color: transparent;
+    color: #333333;
+    text-align: left;
+  }
+}
+
+.responsive-table tbody td {
+  text-align: right;
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody td {
+    border-left: 1px solid #2c79bf;
+    border-bottom: 1px solid #2c79bf;
+    text-align: center;
+  }
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody td:last-of-type {
+    border-right: 1px solid #2c79bf;
+  }
+}
+
+.responsive-table tbody td[data-type="currency"] {
+  text-align: right;
+}
+
+.responsive-table tbody td[data-title]:before {
+  content: attr(data-title);
+  float: left;
+  font-size: 0.8em;
+  color: rgba(51, 51, 51, 0.6);
+}
+
+@media (min-width: 30em) {
+  .responsive-table tbody td[data-title]:before {
+    font-size: 0.9em;
+  }
+}
+
+@media (min-width: 48em) {
+  .responsive-table tbody td[data-title]:before {
+    /* Don't show data-title labels */
+    content: none;
+  }
+}
+
+/* Additional styles for search results */
+.search-results-header {
+  margin: 1rem 0;
+  padding: 0.5rem;
+}
+
+.search-results-header p {
+  margin: 0.5rem 0;
+  color: #333333;
+}
+
+.search-results-header strong {
+  color: #31b0d4;
+  font-weight: 600;
+}
+
+.responsive-table a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.responsive-table a:hover {
+  color: #31b0d4;
+  text-decoration: underline;
+}
+
+.responsive-table .price-cell {
+  color: #31b0d4;
+  font-weight: 600;
+}

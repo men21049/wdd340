@@ -1,0 +1,101 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (typeof errors !== 'undefined' && errors) { %>
+  <ul class="notice">
+    <% if (Array.isArray(errors)) { %>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    <% } else if (errors.array) { %>
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    <% } %>
+  </ul>
+<% } %>
+
+<% if (typeof accountData !== 'undefined' && accountData && 
+       (accountData.account_type === 'Employee' || accountData.account_type === 'Admin')) { %>
+  <p><a href="/search/popular-searches">View Popular Searches</a></p>
+<% } %>
+
+<form method="post" action="/search/">
+  <fieldset>
+    <legend>Search Inventory</legend>
+    
+    <label for="search_criteria">Search Term:</label>
+    <input type="text" 
+           id="search_criteria" 
+           name="search_criteria" 
+           placeholder="Enter make, model, year, color, or description..."
+           value="<%= typeof search_criteria !== 'undefined' ? search_criteria : '' %>"
+           required
+           minlength="1"
+           maxlength="100">
+    <small>Search by vehicle make, model, year, color, price, miles, or description</small>
+    
+    <button type="submit">Search</button>
+    <button type="reset">Clear</button>
+  </fieldset>
+</form>
+
+
+<% if (typeof search_criteria !== 'undefined' && search_criteria) { %>
+  <div class="search-results-header">
+    <p>Search results for: <strong>"<%= search_criteria %>"</strong></p>
+    <% if (typeof results_count !== 'undefined') { %>
+      <p>Found <strong><%= results_count %></strong> result(s)</p>
+    <% } %>
+  </div>
+<% } %>
+
+<% if (typeof results !== 'undefined' && results && results.length > 0) { %>
+  <div class="search-container">
+    <table class="responsive-table">
+      <caption>Vehicle Search Results</caption>
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Year</th>
+          <th>Price</th>
+          <th>Miles</th>
+          <th>Color</th>
+          <th>Classification</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach(vehicle => { %>
+          <tr>
+            <th scope="row" data-title="Vehicle">
+              <%= vehicle.inv_make %> <%= vehicle.inv_model %>
+            </th>
+            <td data-title="Year"><%= vehicle.inv_year %></td>
+            <td data-title="Price" data-type="currency" class="price-cell">
+              $<%= new Intl.NumberFormat('en-US').format(vehicle.inv_price) %>
+            </td>
+            <td data-title="Miles">
+              <%= new Intl.NumberFormat('en-US').format(vehicle.inv_miles) %>
+            </td>
+            <td data-title="Color"><%= vehicle.inv_color %></td>
+            <td data-title="Classification">
+              <%= vehicle.classification_name || 'N/A' %>
+            </td>
+            <td data-title="Details">
+              <a href="/inv/detail/<%= vehicle.inv_id %>" 
+                 title="View <%= vehicle.inv_make %> <%= vehicle.inv_model %> details">
+                View Details
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } else if (typeof results !== 'undefined' && results && results.length === 0 && typeof search_criteria !== 'undefined' && search_criteria) { %>
+  <p class="notice">No vehicles found matching your search criteria. Please try a different search term.</p>
+<% } %>

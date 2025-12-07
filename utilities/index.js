@@ -24,7 +24,7 @@ Util.getNav = async function (req,res,next){
         "</a>";
         list += "</li>";
     })
-    list += "</ul>";
+    list += '<li><a href="/search/" title="Search Inventory">Search</a></li>' + '</ul>';
     return list;
 }
 

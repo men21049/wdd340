@@ -1,0 +1,53 @@
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } %>
+
+<%- messages() %>
+
+<% if (typeof errors !== 'undefined' && errors) { %>
+  <ul class="notice">
+    <% if (Array.isArray(errors)) { %>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    <% } else if (errors.array) { %>
+      <% errors.array().forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    <% } %>
+  </ul>
+<% } %>
+
+<p><a href="/search/">Back to Search</a></p>
+
+<% if (typeof popularSearches !== 'undefined' && popularSearches && popularSearches.length > 0) { %>
+  <div class="search-container">
+    <table class="responsive-table">
+      <caption>Most Popular Search Terms</caption>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Number of Searches</th>
+          <th>Client Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% popularSearches.forEach((search, index) => { %>
+          <tr>
+            <th scope="row" data-title="Search Term">
+              <%= search.search_criteria %>
+            </th>
+            <td data-title="Number of Searches">
+              <%= search.search_count %>
+            </td>
+            <td data-title="Client Type">
+              <%= search.user_type %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+<% } else { %>
+  <p class="notice">No popular searches found yet. Start searching to see popular terms!</p>
+<% } %>
