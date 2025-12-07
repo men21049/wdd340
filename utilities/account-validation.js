@@ -98,6 +98,22 @@ validate.loginRules = () => {
   ];
 }
 
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email } = req.body;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav();
+    res.render("account/login", {
+      errors: errors.array(),
+      title: "Login",
+      nav,
+      account_email,
+    });
+    return;
+  }
+  next();
+};
+
 validate.updatePasswordRules = () => {
   return [
     body("account_id")

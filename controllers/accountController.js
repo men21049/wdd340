@@ -204,13 +204,10 @@ accntCont.loginAccount = async function(req, res){
       const cookieOptions = {
         httpOnly: true,
         maxAge: 3600 * 1000,
-        sameSite: 'lax'
+        sameSite: 'lax',
+        secure: process.env.NODE_ENV === 'production'
       };
-
-      if (process.env.NODE_ENV === 'production' && process.env.HTTPS === 'true') {
-        cookieOptions.secure = true;
-      }
-      
+    
       res.cookie("jwt", accessToken, cookieOptions);
       return res.redirect("/account/");
     }
