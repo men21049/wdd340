@@ -191,7 +191,6 @@ accntCont.loginAccount = async function(req, res){
     res.status(400).render("account/login", {
       title: "Login",
       nav,
-  
       errors: null,
       account_email,
     });
@@ -220,13 +219,20 @@ accntCont.loginAccount = async function(req, res){
       res.status(400).render("account/login", {
         title: "Login",
         nav,
-
         errors: null,
         account_email,
       });
     }
   } catch (error) {
-    throw new Error('Access Forbidden');
+    console.error("Login error details:", error);
+    console.error("Error stack:", error.stack);
+    req.flash("notice", "An error occurred during login. Please try again.");
+    res.status(500).render("account/login", {
+      title: "Login",
+      nav,
+      errors: null,
+      account_email: account_email || '',
+    });
   }
 
 };
